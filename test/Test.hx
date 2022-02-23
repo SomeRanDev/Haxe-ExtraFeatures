@@ -13,39 +13,80 @@ function main() {
 	trace("Testing [Extra Features]");
 
 	/**********************************************
-	 * unpack
+	 * decon
 	 * 
-	 * Unpacks (destructures) any type with fields
-	 * into a new or existing variable.
+	 * Deconstructs (destructures) any type with
+	 * fields into a new or existing variable.
 	 * Declaring with "final" is not supported.
 	 **********************************************/
-	// unpack anonymous structure
+	// decon anonymous structure
 	var two = 123;
 	var data = { one: 1, two: 2 };
 
 	// "one" is declared as a new variable
 	// "two" is reassigned
-	data.unpack(var one, two);
+	data.decon(var one, two);
 
 	assert(one == 1);
 	assert(two == 2);
 
 	// ---
 
-	// unpack class
+	// decon class
 	var baseInst = new Base();
-	assert(baseInst.unpack(var three, two, one) == baseInst);
+	assert(baseInst.decon(var three, two, one) == baseInst);
 
-	assert(one == 999);
-	assert(two == 1000);
-	assert(three == 1001);
+	assert(one == 100);
+	assert(two == 200);
+	assert(three == 300);
 
 	/**********************************************
-	 * setfield
+	 * iftrue
 	 * 
-	 * Unpacks (destructures) any type with fields
-	 * into a new or existing variable.
-	 * Declaring with "final" is not supported.
+	 * Append to an expression to have it only
+	 * execute when a condition is true.
+	 **********************************************/
+	var counter = new Counter();
+
+	assert(counter.count == 0);
+
+	counter.inc().onlyif(counter.count == 0);
+
+	assert(counter.count == 1);
+
+	counter.inc().onlyif(counter.count == 0);
+
+	assert(counter.count == 1);
+
+	counter.inc().onlyif(counter.count > 0);
+
+	assert(counter.count == 2);
+
+	assert(counter.getCount().onlyif(true) == 2);
+	assert(counter.getCount().onlyif(false) == null);
+
+	/**********************************************
+	 * unless
+	 * 
+	 * Append to an expression to have it only
+	 * execute when a condition is false.
+	 **********************************************/
+	counter.inc().unless(counter.count == 2);
+
+	assert(counter.count == 2);
+
+	counter.inc().unless(counter.count < 2);
+ 
+	assert(counter.count == 3);
+
+	assert(counter.getCount().unless(true) == null);
+	assert(counter.getCount().unless(false) == 3);
+
+	/**********************************************
+	 * assign
+	 * 
+	 * Assigns a value to a field.
+	 * Useful when trying to keep chaining neat.
 	 **********************************************/
 	assert(baseInst.assign(one, 123).one == 123);
 	assert(baseInst.assign(two, 321).two == 321);
@@ -111,8 +152,8 @@ function main() {
 	var child = getChild().as(Child);
 	var child2: Child = getChild().retype();
 
-	assert(child.four == 9999);
-	assert(child2.four == 9999);
+	assert(child.four == 400);
+	assert(child2.four == 400);
 
 	// ---
 
@@ -120,13 +161,27 @@ function main() {
 }
 
 class Base {
-	public var one = 999;
-	public var two = 1000;
-	public var three = 1001;
+	public var one = 100;
+	public var two = 200;
+	public var three = 300;
 
 	public function new() {}
 }
 
 class Child extends Base {
-	public var four = 9999;
+	public var four = 400;
+}
+
+class Counter {
+	public var count = 0;
+
+	public function new() {}
+
+	public function inc() {
+		count++;
+	}
+
+	public function getCount() {
+		return count;
+	}
 }

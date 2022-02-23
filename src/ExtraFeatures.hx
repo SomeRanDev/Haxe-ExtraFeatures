@@ -5,8 +5,23 @@ import haxe.macro.Expr;
 using haxe.macro.ExprTools;
 using haxe.macro.MacroStringTools;
 
-macro function unpack(input: Expr, exprs: Array<Expr>) {
-	return impl.Unpack.unpackImpl(input, exprs);
+macro function decon(input: Expr, exprs: Array<Expr>) {
+	return impl.Decon.deconImpl(input, exprs);
+}
+
+macro function onlyif<T>(input: ExprOf<T>, cond: Expr) {
+	if(helpers.Expr.isVoid(input)) {
+		return impl.OnlyifUnless.onlyifImplVoid(input, cond);
+	}
+	return impl.OnlyifUnless.onlyifImpl(input, cond);
+}
+
+macro function unless<T>(input: ExprOf<T>, cond: Expr) {
+	var unlessCond = macro !($cond);
+	if(helpers.Expr.isVoid(input)) {
+		return impl.OnlyifUnless.onlyifImplVoid(input, unlessCond);
+	}
+	return impl.OnlyifUnless.onlyifImpl(input, unlessCond);
 }
 
 macro function assign(input: Expr, field: Expr, value: Expr) {

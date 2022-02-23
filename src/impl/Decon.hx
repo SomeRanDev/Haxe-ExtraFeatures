@@ -10,7 +10,7 @@ using haxe.macro.ExprTools;
 using haxe.macro.PositionTools;
 using haxe.macro.TypeTools;
 
-function unpackImpl(input: Expr, exprs: Array<Expr>) {
+function deconImpl(input: Expr, exprs: Array<Expr>) {
 	var pos = Context.currentPos();
 
 	var assignmentNames = [];
@@ -21,7 +21,7 @@ function unpackImpl(input: Expr, exprs: Array<Expr>) {
 		if(!assignmentNames.contains(name)) {
 			assignmentNames.push(name);
 		} else {
-			Context.error('Multiple instances of \'${name}\' are attemping to be unpacked', pos);
+			Context.error('Multiple instances of \'${name}\' are attemping to be deconstruct', pos);
 		}
 	};
 
@@ -42,12 +42,12 @@ function unpackImpl(input: Expr, exprs: Array<Expr>) {
 						namePositions[s] = expr.pos;
 					}
 					case _: {
-						Context.error('Unpack parameter #$index \'${expr.toString()}\' is not a valid identifier', expr.pos);
+						Context.error('Deconstruct parameter #$index \'${expr.toString()}\' is not a valid identifier', expr.pos);
 					}
 				}
 			}
 			case _: {
-				Context.error('Unpack parameter #$index \'${expr.toString()}\' is neither an EVars or EConst(CIdent)', expr.pos);
+				Context.error('Deconstruct parameter #$index \'${expr.toString()}\' is neither an EVars or EConst(CIdent)', expr.pos);
 			}
 		}
 		index++;
