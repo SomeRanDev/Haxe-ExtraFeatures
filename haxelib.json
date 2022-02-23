@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"description": "Adds various helpful functions for Haxe expressions.",
 	"url": "https://github.com/RobertBorghese/Haxe-ExtraFeatures",
-	"license": "Public",
+	"license": "MIT",
 	"tags": [
 		"macro",
 		"expr",
