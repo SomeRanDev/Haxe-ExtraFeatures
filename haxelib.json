@@ -1,6 +1,6 @@
 {
 	"name": "extra-features",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Adds various helpful functions for Haxe expressions.",
 	"url": "https://github.com/RobertBorghese/Haxe-ExtraFeatures",
 	"license": "MIT",
@@ -12,6 +12,6 @@
 		"destructuring"
 	],
 	"classPath": "src/",
-	"releasenote": "Added `onlyif` and `unless`.",
+	"releasenote": "Added [onlyif] and [unless].",
 	"contributors": ["RobertBorghese"]
 }
