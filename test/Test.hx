@@ -65,6 +65,9 @@ function main() {
 	assert(counter.getCount().onlyif(true) == 2);
 	assert(counter.getCount().onlyif(false) == null);
 
+	// note: using onlyif/unless on expression that returns
+	//       Void will always also return "nothing" (Void).
+
 	/**********************************************
 	 * unless
 	 * 
