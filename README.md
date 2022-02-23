@@ -24,7 +24,9 @@ using ExtraFeatures;
 
 # [Features]
 
-### "unwrap" (destructuring feature)
+"unwrap" (destructuring feature)
+================================
+
 Call "unwrap" on an expression to assign its fields to new or existing variables of the same names of the fields.
 ```haxe
 function getObj() return { name: "John", age: 66 };
@@ -36,7 +38,9 @@ assert(name == "John");
 assert(age == 66);
 ```
 
-### "with"/"also" (scope functions)
+"with"/"also" (scope functions)
+===============================
+
 Based on [Kotlin's scope functions](https://kotlinlang.org/docs/scope-functions.html), these functions use macros to provide zero-cost inline/chain calls to block expressions with the lvalue stored in a variable.
 ```haxe
 // with vs also
@@ -58,7 +62,9 @@ var meters = player.getDistance().with(dist, {
 });
 ```
 
-### "as"/"retype" (function-call cast)
+"as"/"retype" (function-call cast)
+==================================
+
 Based on [C# "as" operator](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/type-testing-and-cast#as-operator), these allow for type casting with a function-like syntax.
 ```haxe
 var getChild = function(): Base { return new Child(); };
