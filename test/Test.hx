@@ -13,28 +13,28 @@ function main() {
 	trace("Testing [Extra Features]");
 
 	/**********************************************
-	 * decon
+	 * unpack
 	 * 
-	 * Deconstructs (destructures) any type with
-	 * fields into a new or existing variable.
+	 * Destructures any type with fields into
+	 * new or existing variables.
 	 * Declaring with "final" is not supported.
 	 **********************************************/
-	// decon anonymous structure
+	// unpack anonymous structure
 	var two = 123;
 	var data = { one: 1, two: 2 };
 
 	// "one" is declared as a new variable
 	// "two" is reassigned
-	data.decon(var one, two);
+	data.unpack(var one, two);
 
 	assert(one == 1);
 	assert(two == 2);
 
 	// ---
 
-	// decon class
+	// unpack class
 	var baseInst = new Base();
-	assert(baseInst.decon(var three, two, one) == baseInst);
+	assert(baseInst.unpack(var three, two, one) == baseInst);
 
 	assert(one == 100);
 	assert(two == 200);
@@ -42,20 +42,20 @@ function main() {
 
 	// ---
 
-	// decon enum
+	// unpack enum
 
 	var genre1 = Puzzle("My Puzzle");
-	genre1.decon(var title);
+	genre1.unpack(var title);
 
 	assert(title == "My Puzzle");
 
-	Platformer("Jumpy Man", 10).decon(title, var levels);
+	Platformer("Jumpy Man", 10).unpack(title, var levels);
 
 	assert(title == "Jumpy Man");
 	assert(levels == 10);
 
 	var genre2 = RPG("Project 1", 20, 30);
-	assert(genre2.decon(title, var dungeons) == genre2);
+	assert(genre2.unpack(title, var dungeons) == genre2);
 
 	assert(title == "Project 1");
 	assert(dungeons == 30);

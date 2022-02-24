@@ -24,20 +24,24 @@ using ExtraFeatures;
 
 # [Features]
 
-### "decon" (deconstruct feature)
+### "unpack" (destructuring feature)
 
-Based on [C#'s deconstructing](https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/functional/deconstruct). Call "decon" on an expression to assign its fields to new or existing variables of the same names of the fields.
+Based on [JavaScript's object destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment). Call "unpack" on an expression to assign its fields to new or existing variables of the same names of the fields.
 ```haxe
 function getObj() return { name: "John", age: 66 };
 
 var name = "Default";
-getObj().decon(name, var age);
+getObj().unpack(name, var age);
 
 assert(name == "John");
 assert(age == 66);
 ```
 
-Enums can also be `decon`-ed to easily extract contained data.
+&nbsp;  
+
+### enum "unpack"
+
+Enums can also be `unpack`-ed to easily extract contained data.
 ```haxe
 enum FileType {
 	Shortcut(path: String);
@@ -48,13 +52,13 @@ enum FileType {
 // ---
 
 var file = File(123);
-file.decon(var size);
+file.unpack(var size);
 assert(size == 123);
 
-Folder(300, 5).decon(size, var fileCount);
+Folder(300, 5).unpack(size, var fileCount);
 assert(size == 300);
 
-Shortcut("downloads/").decon(size); // throws error, no "size" data
+Shortcut("downloads/").unpack(size); // throws error, no "size" data
 ```
 
 &nbsp;  

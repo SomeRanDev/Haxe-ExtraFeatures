@@ -5,8 +5,8 @@ import haxe.macro.Expr;
 using haxe.macro.ExprTools;
 using haxe.macro.MacroStringTools;
 
-macro function decon(input: Expr, exprs: Array<Expr>) {
-	return impl.Decon.deconImpl(input, exprs);
+macro function unpack(input: Expr, exprs: Array<Expr>) {
+	return impl.Unpack.unpackImpl(input, exprs);
 }
 
 macro function onlyif<T>(input: ExprOf<T>, cond: Expr) {

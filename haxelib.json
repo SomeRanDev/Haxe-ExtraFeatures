@@ -1,6 +1,6 @@
 {
 	"name": "extra-features",
-	"version": "1.2.0",
+	"version": "2.0.0",
 	"description": "Adds various helpful functions for Haxe expressions.",
 	"url": "https://github.com/RobertBorghese/Haxe-ExtraFeatures",
 	"license": "MIT",
@@ -14,6 +14,6 @@
 		"deconstructing"
 	],
 	"classPath": "src/",
-	"releasenote": "Added enum support for deconstructing.",
+	"releasenote": "Renamed [decon] to [unpack] as feature works more similiarly to JS than C#",
 	"contributors": ["RobertBorghese"]
 }
