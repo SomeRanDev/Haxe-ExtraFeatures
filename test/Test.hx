@@ -40,6 +40,26 @@ function main() {
 	assert(two == 200);
 	assert(three == 300);
 
+	// ---
+
+	// decon enum
+
+	var genre1 = Puzzle("My Puzzle");
+	genre1.decon(var title);
+
+	assert(title == "My Puzzle");
+
+	Platformer("Jumpy Man", 10).decon(title, var levels);
+
+	assert(title == "Jumpy Man");
+	assert(levels == 10);
+
+	var genre2 = RPG("Project 1", 20, 30);
+	assert(genre2.decon(title, var dungeons) == genre2);
+
+	assert(title == "Project 1");
+	assert(dungeons == 30);
+
 	/**********************************************
 	 * iftrue
 	 * 
@@ -173,6 +193,14 @@ class Base {
 
 class Child extends Base {
 	public var four = 400;
+}
+
+enum GameGenre {
+	Unknown;
+	Generic;
+	Puzzle(title: String);
+	Platformer(title: String, levels: Int);
+	RPG(title: String, towns: Int, dungeons: Int);
 }
 
 class Counter {

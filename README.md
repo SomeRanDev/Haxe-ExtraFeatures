@@ -35,7 +35,27 @@ getObj().decon(name, var age);
 
 assert(name == "John");
 assert(age == 66);
-```  
+```
+
+Enums can also be `decon`-ed to easily extract contained data.
+```haxe
+enum FileType {
+	Shortcut(path: String);
+	File(size: Int);
+	Folder(size: Int, fileCount: Int);
+}
+
+// ---
+
+var file = File(123);
+file.decon(var size);
+assert(size == 123);
+
+Folder(300, 5).decon(size, var fileCount);
+assert(size == 300);
+
+Shortcut("downloads/").decon(size); // throws error, no "size" data
+```
 
 &nbsp;  
 
